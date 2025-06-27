@@ -5,7 +5,7 @@ const SignIn = () => {
   return (
     <div className="w-full h-screen flex justify-center items-center">
       <div className="flex flex-col gap-[20px]">
-        <div className="flex justify-between items-center gap-[20px]">
+        <div className="flex justify-center items-center gap-[15px]">
           <Logo />
           <h1 className="text-3xl">Admin paneli</h1>
         </div>

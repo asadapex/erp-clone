@@ -1,29 +1,22 @@
-import {
-  createContext,
-  useState,
-  type Dispatch,
-  type FC,
-  type ReactNode,
-  type SetStateAction,
-} from "react";
-
-interface ContextType {
-  token: boolean;
-  setToken: Dispatch<SetStateAction<boolean>>;
-}
+import { createContext, useState, type FC, type ReactNode } from "react";
+import { useCookies } from "react-cookie";
+import type { ContextType } from "../types/ContextType";
 
 export const Context = createContext<ContextType>({
-  token: false,
-  setToken: () => false,
+  token: "",
+  setToken: () => null,
+  showNavbar: false,
+  setShowNavbar: () => false,
 });
 
 export const GlobalContext: FC<{ children: ReactNode }> = ({ children }) => {
-  const isToken = localStorage.getItem("token");
-  const [token, setToken] = useState<boolean>(
-    (isToken && JSON.parse(isToken)) || false
-  );
+  const [cookie] = useCookies(["token"]);
+  const [token, setToken] = useState<string | null>(cookie.token || null);
+  const [showNavbar, setShowNavbar] = useState<boolean>(false);
 
   return (
-    <Context.Provider value={{ token, setToken }}>{children}</Context.Provider>
+    <Context.Provider value={{ setToken, token, showNavbar, setShowNavbar }}>
+      {children}
+    </Context.Provider>
   );
 };

@@ -1,33 +1,31 @@
 import { useContext, useState, type FC } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
-import { Context } from "../context/Context";
 import toast, { Toaster } from "react-hot-toast";
+import { instance } from "../hooks/instance";
+import { Context } from "../context/Context";
+import { useCookies } from "react-cookie";
 
 const SignInForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { setToken } = useContext(Context);
+  const [_cookie, setCookie] = useCookies(["token"]);
+
   const onFinish = (values: { username: string; password: string }) => {
     setIsLoading(true);
-    fetch("http://localhost:3000/users")
-      .then((res) => res.json())
+    instance
+      .post(`/user/login`, {
+        username: values.username,
+        password: values.password,
+      })
       .then((data) => {
-        const isUser = data.find(
-          (user: { username: string; password: string }) =>
-            user.username === values.username &&
-            user.password === values.password
-        );
+        setIsLoading(false);
+        toast.success("Xush kelibsiz");
+        setCookie("token", data.data.accessToken);
         setTimeout(() => {
-          if (isUser) {
-            setTimeout(() => {
-              setToken(true);
-              toast.success("Login successful");
-            }, 1000);
-          } else {
-            toast.error("Invalid username or password");
-          }
-          setIsLoading(false);
-        }, 1000);
+          setToken(data.data.accessToken);
+          location.pathname = "/";
+        }, 800);
       });
   };
 
@@ -46,6 +44,7 @@ const SignInForm: FC = () => {
           rules={[{ required: true, message: "Please input your Username!" }]}
         >
           <Input
+            style={{ width: "350px" }}
             allowClear
             size="large"
             prefix={<UserOutlined />}

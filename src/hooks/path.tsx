@@ -1,4 +1,11 @@
+import { NavLink } from "react-router-dom";
 import { Groups, Home, Major, Students, Teachers } from "../pages/Dashboard";
+import {
+  TeamOutlined,
+  UngroupOutlined,
+  UnorderedListOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 
 export const path = {
   home: "/",
@@ -46,5 +53,28 @@ export const dashboardRoutes = [
     title: "Home",
     path: path.home,
     element: <Home />,
+  },
+];
+
+export const DashboardNavList = [
+  {
+    key: 1,
+    label: <NavLink to={path.major}>Yo'nalishlar</NavLink>,
+    icon: <UnorderedListOutlined />,
+  },
+  {
+    key: 2,
+    label: <NavLink to={path.groups}>Guruxlar</NavLink>,
+    icon: <UngroupOutlined />,
+  },
+  {
+    key: 3,
+    label: <NavLink to={path.students}>O'quvchilar</NavLink>,
+    icon: <TeamOutlined />,
+  },
+  {
+    key: 4,
+    label: <NavLink to={path.teachers}>Ustozlar</NavLink>,
+    icon: <UserOutlined />,
   },
 ];
