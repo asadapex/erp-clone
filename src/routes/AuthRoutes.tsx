@@ -1,13 +1,14 @@
-import { Route, Routes } from "react-router-dom";
-import { Home, SignIn } from "../pages/Auth";
+import { Route, Routes } from "react-router-dom"
+import { paths } from "../hooks/paths"
+import { Home, SignIn } from "../pages/Auth"
 
 const AuthRoutes = () => {
   return (
     <Routes>
-      <Route path="/sign-in" element={<SignIn />} />
-      <Route path="/" element={<Home />} />
+        <Route path={paths.home} element={<Home/>}/>
+        <Route path={paths.singIn} element={<SignIn/>}/>
     </Routes>
-  );
-};
+  )
+}
 
-export default AuthRoutes;
+export default AuthRoutes

@@ -1,14 +1,14 @@
-import { Menu } from "antd";
-import { useContext } from "react";
-import { Context } from "../context/Context";
-import { DashboardNavList } from "../hooks/path";
+import { Menu } from 'antd';
+import { DashboardNavList } from '../hooks/paths';
+import { useContext } from 'react';
+import { Context } from '../context/Context';
 
 const NavbarCarusel = () => {
-  const { showNavbar } = useContext(Context);
+  const {showNavbar} = useContext(Context)
   return (
     <div style={{ width: "100%" }}>
       <Menu
-        defaultSelectedKeys={["1"]}
+        defaultSelectedKeys={['1']}
         mode="inline"
         theme="dark"
         inlineCollapsed={showNavbar}

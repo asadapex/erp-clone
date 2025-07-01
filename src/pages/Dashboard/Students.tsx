@@ -1,5 +1,8 @@
-const Students = () => {
-  return <div>Students</div>;
-};
 
-export default Students;
+const Students = () => {
+  return (
+    <div>Students</div>
+  )
+}
+
+export default Students

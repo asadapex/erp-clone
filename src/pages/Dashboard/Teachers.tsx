@@ -1,5 +1,8 @@
-const Teachers = () => {
-  return <div>Teachers</div>;
-};
 
-export default Teachers;
+const Teachers = () => {
+  return (
+    <div>Teachers</div>
+  )
+}
+
+export default Teachers

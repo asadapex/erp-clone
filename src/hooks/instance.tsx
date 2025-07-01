@@ -1,4 +1,4 @@
 import axios from "axios";
-import { API } from "./getUrl";
+import { API } from "./getEnv";
 
-export const instance = axios.create({ baseURL: API });
+export const instance = axios.create({baseURL:API})

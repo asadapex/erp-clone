@@ -1,12 +1,13 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+import { paths } from "../../hooks/paths"
+import { useEffect } from "react"
 
 const Home = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   useEffect(() => {
-    navigate("/sign-in");
-  });
-  return "";
-};
+    navigate(paths.singIn)
+  },[])
+  return ""
+}
 
-export default Home;
+export default Home

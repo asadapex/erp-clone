@@ -1,20 +1,20 @@
-import Navbar from "../modules/Navbar";
-import Header from "../modules/Header";
-import DashboardRoutes from "../routes/DashboardRoutes";
-import { Context } from "../context/Context";
-import { useContext } from "react";
+import { useContext } from "react"
+import Header from "../modules/Header"
+import Navbar from "../modules/Navbar"
+import { DashboardRoute } from "../routes"
+import { Context } from "../context/Context"
 
 const DashboardLayout = () => {
-  const { showNavbar } = useContext(Context);
+  const {showNavbar} = useContext(Context)
   return (
     <div className="flex">
       <Navbar />
-      <div className={` ${showNavbar ? "w-full" : "w-[82%]"} duration-300`}>
+      <div className={` ${showNavbar ? "w-full" : "w-[82%]"} h-[100vh] overflow-y-auto duration-300`}>
         <Header />
-        <DashboardRoutes />
+        <DashboardRoute />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DashboardLayout;
+export default DashboardLayout
